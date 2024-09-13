@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content_header %}
+	Payement etudiant
+{% endblock %}
+
+{% block content %}
+
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="row">
+            
+            <form action="{% url 'admin_gestion:payement_page' %}" method="post">
+                {% csrf_token %}
+                <div class="col-xl-12">
+						<div class="card">
+							<div class="card-header">
+								<h5 class="mb-0">Payement</h5>
+							</div>
+							<div class="card-body">
+								<div class="row">
+                                    <div class="col-xl-6 col-sm-6">
+                                            {% if my_section %}
+                                        <div class="mb-3">
+                                            <div class="form-check">
+                                                <label for="exampleFormControlInput9">Etudiant  </label>
+                                                <select class="" id="exampleFormControlInput9" name="email">
+                                                    <option >Open this select menu</option>
+                                                        {% for indexform in my_section %}
+                                                    <option value="{{ indexform.Email}}">{{ indexform.Nom_Etudiant}}</option>
+                                                        {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                            {% endif %}
+									</div>
+                                    <div class="col-xl-6 col-sm-6">
+                                        {% if special %}
+                                        <div class="mb-3">
+                                                <label for="exampleFormControlInput9">Formation </label>
+                                            <select class="" id="exampleFormControlInput9" name="formation_choisi">
+                                                <option >Open this select menu</option>
+                                                {% for indexform in special %}
+                                                    <option value="{{ indexform.nom_formation}}">{{ indexform.nom_formation}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+									<div class="col-sm-6 col-xl-6">
+										<div class="mb-3">
+											<label for="exampleFormControlInput10" class="form-label text-primary">Mode de Payement<span class="required">*</span></label>
+											<div class="d-flex align-items-center">
+												
+											<div class="form-check">
+												<input class="form-check-input" type="radio" value="billet pay" id="flexRadioDefault1" name = "mode_payement">
+												<label class="form-check-label font-w500" for="flexRadioDefault1">
+													Especes
+												</label>
+											</div>
+											<div class="form-check ms-3">
+												<input class="form-check-input" type="radio" value="mobile pay" id="flexRadioDefault2" name = "mode_payement">
+												<label class="form-check-label font-w500" for="flexRadioDefault2">
+													MOMO ou MTN Mobile Monney
+												</label>
+											</div>
+					 						<div class="form-check ms-3">
+												<input class="form-check-input" type="radio" value="bank pay" id="flexRadioDefault3" name = "mode_payement">
+												<label class="form-check-label font-w500" for="flexRadioDefault3">
+													Virement bancaire
+												</label>
+											</div>
+									    </div>
+                                    </div>
+									<div class="col-xl-6 col-sm-6">
+										
+										<div class="mb-3">
+                                            <label for="exampleFormControlInput11" class="form-label text-primary">Montant Total<span class="required">*</span></label>
+                                            <input type="number" class="form-control" id="exampleFormControlInput11" placeholder="500 000" name="prix_total">
+										</div>
+										<div class="mb-3">
+											<label for="exampleFormControlInput11" class="form-label text-primary">Montant Verse<span class="required">*</span></label>
+											<input type="number" class="form-control" id="exampleFormControlInput11" placeholder="300 000" name="Montant_verse">
+										</div>
+									</div>
+								</div>
+                           
+								<div class="">
+									<!-- <button class="btn btn-outline-primary me-3">Save as Draft</button> -->
+									<button class="btn btn-primary " type="submit">Inscrire</button>
+								</div>
+							</div>
+                            
+						</div>
+					</div>
+                </div>
+
+            </form> 
+           
+        </div>
+    </div>
+</div>
+
+{% endblock %}
